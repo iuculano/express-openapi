@@ -1,10 +1,13 @@
 import express from 'express';
 import Services from './health.services';
+import { HttpException } from '@lib/errors';
 
 
 const router = express.Router();
 
 router.get('/livez', async (req, res) => {
+  throw new HttpException(418);
+
   res.json({
     status: 'alive' as const,
   });

@@ -17,7 +17,7 @@
             "type": "node-terminal",
             "name": "Run Script: debug",
             "request": "launch",
-            "command": "npm run debug",
+            "command": "npm run build && npm run debug",
             "cwd": "${workspaceFolder}"
         }
     ]

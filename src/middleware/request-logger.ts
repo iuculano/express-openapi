@@ -28,7 +28,7 @@ export function requestLogger(): RequestHandler {
 
     // Successful request.
     res.once('finish', () => {
-      const durationMs = Number(process.hrtime.bigint() - timeStart) / 1e6;
+      const durationMs = Number(process.hrtime.bigint() - timeStart) / 1000000;
       const status = res.statusCode;
       const level = status >= 500 ? 'error' : status >= 400 ? 'warn' : 'info';
 
@@ -45,7 +45,7 @@ export function requestLogger(): RequestHandler {
       // Try to figure out if we actually managed to send a response or not.
       // If we didn't, log a warning.
       if (!res.writableEnded) {
-        const durationMs = Number(process.hrtime.bigint() - timeStart) / 1e6;
+        const durationMs = Number(process.hrtime.bigint() - timeStart) / 1000000;
         
         res.locals.logger?.warn({
           type: 'request_aborted',
